@@ -1,0 +1,203 @@
+
+<div class="container formStyle" >
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+  
+        <form  #addVolunteerForm="ngForm" >
+          <mat-card class="example-card">
+            <mat-card-header>
+  
+              <mat-card-title><b style="font-size: 20px">Volunteer Application</b></mat-card-title>
+              <mat-card-subtitle>Volunteer with Teach For India, Mumbai!</mat-card-subtitle>
+            </mat-card-header>
+            <hr>
+            <mat-card-content >
+              <p>
+  
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input  required [(ngModel)]="volunteer.name" class="inputStyle"  name="name" matInput placeholder="Name">
+                  <mat-hint>Ex. Mr. Mark Pinto</mat-hint>
+                </mat-form-field>
+              </p>
+              <p>
+  
+                  <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label>Age</mat-label>
+                    <input type="number" required class="inputStyle" [(ngModel)]="volunteer.age"  name="age" matInput placeholder="Age">
+                    <mat-hint>Ex. 18</mat-hint>
+                  </mat-form-field>
+                </p>
+              <p>
+                  <mat-radio-group  class="example-full-width" aria-label="Select an option">
+                      <mat-radio-button (click)="onGender('Male')" name="male" value="Male">Male</mat-radio-button>
+                      <mat-radio-button (click)="onGender('Female')" name="female"  value="Female">Female</mat-radio-button>
+                      <mat-radio-button (click)="onGender('Other')"  name="other"  value="Other">Other</mat-radio-button>
+                    </mat-radio-group>
+              </p>
+              <p>
+  
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Current Phone No.</mat-label>
+                    <input type="number" [(ngModel)]="volunteer.phoneno" required class="inputStyle"  name="phoneno" matInput placeholder="Current Phone No.">
+                    <mat-hint>Ex. 9769301456</mat-hint>
+                  </mat-form-field>
+                </p>
+                <p>
+  
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Current Email Address</mat-label>
+                      <input  required [(ngModel)]="volunteer.email" class="inputStyle"  name="email" matInput placeholder="Current Email Address">
+                      <mat-hint>Ex. abc@gmail.com</mat-hint>
+                    </mat-form-field>
+                  </p>
+              <p>
+                  <mat-form-field class="example-full-width">
+                      <textarea required name="residential_address"
+                      [(ngModel)]="volunteer.residential_address" matInput placeholder="Current Residential Address "></textarea>
+                    </mat-form-field>
+  
+              </p>
+              <p>
+                  <mat-radio-group class="example-full-width" aria-label="Current Educational Qualifications">
+                      <mat-radio-button (click)="onEducation('Post-graduate')" value="1">Post-graduate</mat-radio-button>
+                      <mat-radio-button  (click)="onEducation('Graduate')" value="2">Graduate</mat-radio-button>
+                      <mat-radio-button  (click)="onEducation('Pursuing an Undergraduate Degree')" value="3"> Pursuing an Undergraduate Degree</mat-radio-button>
+                      <mat-radio-button (click)="onEducation('In school')" value="4"> In school</mat-radio-button>
+
+                    </mat-radio-group>
+              </p>
+              <p>
+                  <mat-form-field  class="example-full-width">
+                      <textarea  required [(ngModel)]="volunteer.recent_education" name="recent_education"
+                      matInput placeholder="Please share details about your most recent educational experience. "></textarea>
+                    </mat-form-field>
+  
+              </p>
+              <p>
+                  <mat-form-field class="example-full-width">
+                      <textarea required [(ngModel)]="volunteer.current_working_details" name="current_working_details" matInput placeholder="If you are currently working, please share details of your organisation and your role. "></textarea>
+                    </mat-form-field>
+  
+              </p>
+              <p>
+                  <mat-radio-group class="example-full-width" aria-label="Please share the months that you are available during this academic year.">
+                      <mat-radio-button (click)="onMonthsAvailable('June-July-August')" [value]="1">June-July-August</mat-radio-button>
+                      <mat-radio-button (click)="onMonthsAvailable('October-November-December')" [value]="2"> October-November-December</mat-radio-button>
+                      <mat-radio-button (click)="onMonthsAvailable('January-February-March')" [value]="3">January-February-March</mat-radio-button>
+                      <mat-radio-button (click)="onMonthsAvailable('I am available during all months')" [value]="4"> I am available during all months</mat-radio-button>
+
+                    </mat-radio-group>
+              </p>
+            
+              
+  
+              
+              <mat-form-field class="example-full-width">
+                <mat-label>Which days of the week would you like to volunteer? (Day 1) </mat-label>
+                <mat-select   required >
+                  <mat-option (click)="onDay1(day)" *ngFor="let day of days" [value]="day">
+                    {{day}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+              <mat-form-field class="example-full-width">
+                  <mat-label>Which days of the week would you like to volunteer? (Day 2) </mat-label>
+                  <mat-select required >
+                    <mat-option (click)="onDay2(day)" *ngFor="let day of days" [value]="day">
+                      {{day}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Which days of the week would you like to volunteer? (Day 3) </mat-label>
+                    <mat-select >
+                      <mat-option (click)="onDay3(day)" *ngFor="let day of days" [value]="day">
+                        {{day}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+
+                  <p>
+                      <mat-radio-group class="example-full-width" required  aria-label="What time slot would work best for you?">
+                          <mat-radio-button (click)="onTimeSlot('Between 7:30 am - 12:30 pm')" value="1"> Between 7:30 am - 12:30 pm</mat-radio-button>
+                          <mat-radio-button (click)="onTimeSlot('Between 12:30 pm - 05:30 pm')" value="2">Between 12:30 pm - 05:30 pm</mat-radio-button>
+
+    
+                        </mat-radio-group>
+                  </p>
+                  <hr>
+
+                  
+                  <p>
+                      <mat-radio-group class="example-full-width"  required aria-label="Where do you feel your skill-sets lie? ">
+                          <mat-radio-button (click)="onSkillSet('Classroom instruction')"  value="1">Classroom instruction </mat-radio-button>
+                          <mat-radio-button (click)="onSkillSet('Research and data analysis')" value="2">Research and data analysis</mat-radio-button>
+                          <mat-radio-button (click)="onSkillSet('Social media')" value="23"> Social media</mat-radio-button>
+
+                        </mat-radio-group>
+                  </p>
+                   
+                  <hr>
+                  
+                      <h5>Which area in the city would you be comfortable volunteering in?</h5>
+                      <mat-radio-group class="example-full-width"  required aria-label="Where do you feel your skill-sets lie? ">
+
+                      <mat-radio-button required (click)="onArea('Andheri')" value="1">Andheri</mat-radio-button> <br>
+                      <mat-radio-button required (click)="onArea('Dadar')" value="2"> Dadar</mat-radio-button> <br>
+                      <mat-radio-button required (click)="onArea('Ghatkopar')" value="3"> Ghatkopar</mat-radio-button> <br>
+                    </mat-radio-group>
+
+           
+                      <p>
+                          <mat-form-field class="example-full-width" >
+                              <textarea required [(ngModel)]="volunteer.volunteering_cause" name="volunteering_cause" matInput placeholder="Why would you like to volunteer with Teach For India? "></textarea>
+                            </mat-form-field>
+          
+                      </p>  
+                      <p>
+                          <mat-radio-group class="example-full-width" required aria-label="How did you come to know of volunteering opportunities at Teach For India? *
+                          ">
+                              <mat-radio-button (click)="awareness_source('Teach For India Alumni')" value="1">Teach For India Alumni</mat-radio-button>
+                              <mat-radio-button (click)="awareness_source('Teach For India Staff')" value="2">Teach For India Staff</mat-radio-button>
+                              <mat-radio-button (click)="awareness_source('Teach For India website')" value="3">  Teach For India website/discussions
+                                </mat-radio-button>
+                              <mat-radio-button (click)="awareness_source('Social Media')" value="4">Social Media</mat-radio-button>
+                          
+    
+                            </mat-radio-group>
+                      </p>
+                      <hr>
+                      <p>
+                          <mat-radio-group class="example-full-width" required aria-label="Have you had prior teaching experience?">
+                              <mat-radio-button name="Yes" (click)="prior_teaching_experience('Yes')" value="1">Yes</mat-radio-button>
+                              <mat-radio-button name="No" (click)="prior_teaching_experience('No')" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                      </p>
+                      <hr>
+
+                      <!-- <p>
+                          <mat-form-field class="example-full-width" required class="example-full-width">
+                              <textarea required name="volunteer_work"  [(ngModel)]="volunteer.volunteer_work"  matInput placeholder="Please specify any other way in which you would like to support Teach For India. * "></textarea>
+                            </mat-form-field>
+          
+                      </p>   -->
+            </mat-card-content>
+            <mat-card-actions>
+              <button [disabled]="false"  (click)="newVolunteer()" type="submit" mat-raised-button color="accent">
+                CREATE</button>
+              <button (click)="reset()" mat-raised-button color="accent">
+                RESET</button>
+            </mat-card-actions>
+          </mat-card>
+  
+        </form>
+      </div>
+      
+  </div>
+  </div>
+  
